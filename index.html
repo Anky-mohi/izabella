@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: rgb(217, 218, 212);
+            --accent-dark: #4A4B45;
+            --accent-medium: #7A7B74;
+            --text-dark: #2C2C2A;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 1000;
+            background: var(--bg-primary);
+          
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #af5c91;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--accent-dark);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        
+
+
+
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--bg-primary), #FFFFFF);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(74, 75, 69, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(74, 75, 69, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: #2c1b3d;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            line-height: 1.8;
+            color: var(--accent-medium);
+            margin-bottom: 2rem;
+        }
+
+        .hero-button {
+            padding: 1rem 2rem;
+    background: linear-gradient(135deg, #8B5D9F, #E6A5CF);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: var(--text-dark);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: floatImage 6s ease-in-out infinite;
+        }
+
+        .hero-image svg {
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+        }
+
+
+
+
+        .hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-image img {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-image img:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #2c1b3d;
+                padding: 1rem;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .hero-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-image img {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .hero-text button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+
+
+        .logo {
+            width: 100px;
+        }
+
+
+
+        .footer {
+            background: #2C1B3D;
+            color: white;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+        }
+
+        .footer-section {
+            padding: 1rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #E6A5CF;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(to right, #E6A5CF, transparent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section ul li a:hover {
+            color: #E6A5CF;
+            transform: translateX(5px);
+        }
+
+        .footer-section.contact input,
+        .footer-section.contact textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(230, 165, 207, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section.contact input:focus,
+        .footer-section.contact textarea:focus {
+            outline: none;
+            border-color: #E6A5CF;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-section.contact button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #8B5D9F, #E6A5CF);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section.contact button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(230, 165, 207, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
+
+        .whatsapp-container {
+            position: fixed;
+            bottom: 0px;
+            right: 20px;
+            text-align: center;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+    <a
+    href="https://wa.me/5511933705460" 
+    target="_blank" 
+    class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full shadow-lg p-4 hover:bg-green-600 transition-transform transform hover:scale-105"
+    aria-label="Contact us on WhatsApp"
+>
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp Icon" class="w-8 h-8">
+</a>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo-container">
+                
+                  <img class="logo" src="logo.png"/>
+                
+               
+            </div>
+            <button class="mobile-menu-btn">☰</button>
+            <div class="nav-links">
+                <a href="#course">Course</a>
+                <a href="#about">About</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Mesa Radiônica dos Raios Planetários</h1>
+                <p>Desbloqueie a sabedoria ancestral da cura energética por meio da Mesa Radiônica de Raios Planetários. Este curso transformador capacita você a restaurar o equilíbrio e o bem-estar em indivíduos ao aproveitar as energias planetárias para uma harmonização profunda entre as dimensões física, emocional, mental e espiritual.</p>
+            
+                <div class="footer-section contact">
+                    
+                    <form>
+                       
+                        <button type="submit">Comece Sua Jornada Agora</button>
+                    </form>
+                </div>
+            </div>
+            <div class="hero-image">
+               <img  src="img1.png"/>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-purple-200 to-pink-200 rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-purple-800 text-center">Potencial de Ganhos</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <p class="text-2xl font-bold text-purple-600 mb-2">R$ 170</p>
+                        <p class="text-gray-600">Valor médio por sessão</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                        <p class="text-2xl font-bold text-purple-600 mb-2">R$ 10.000</p>
+                        <p class="text-gray-600">Potencial de ganho mensal</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <p class="text-lg font-medium text-gray-700 mb-4">Quanto ganha em média o terapeuta?</p>
+                    <p class="text-gray-600 text-base leading-relaxed mb-6">
+                        Os terapeutas que trabalham com Mesa Radiônica têm um potencial de ganhos muito interessante. Em média, é possível cobrar R$ 170,00 por sessão. 
+                        Com um bom fluxo de atendimentos, é possível alcançar uma média salarial de R$ 10.000 mensais. Com dedicação e prática, você poderá não apenas 
+                        promover bem-estar aos outros, mas também construir uma carreira financeiramente sustentável.
+                    </p>
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full shadow-md hover:bg-gradient-to-r hover:from-purple-700 hover:to-pink-700 transition duration-300">Saiba Mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+
+
+<section
+class="py-16 bg-gradient-to-b from-purple-700 to-pink-500 text-white"
+style="background-image: url('WhatsApp\ Image\ 2025-01-20\ at\ 4.49.14\ AM.jpeg'); background-size: cover; background-position: center; background-blend-mode: overlay; filter: blur(0px);">
+<div class="container mx-auto px-6">
+    <h2 class="text-4xl font-extrabold mb-12 text-center">Conteúdo do Curso</h2>
+    <div class="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <!-- Aula 1 -->
+        <div class="bg-white rounded-lg shadow-lg p-8 transform transition hover:scale-105">
+            <h3 class="text-3xl font-semibold mb-6 text-purple-700">Aula 1</h3>
+            <ul class="space-y-4 text-gray-800">
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>O que é radiestesia e radiônica</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>Trabalhando com o pêndulo</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>Ponto de vibração do operador</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>O que é psiônica</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>O que é a Mesa dos Raios e as egrégoras ancoradas</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-purple-700 mr-3 text-xl">•</span>
+                    <span>Mantras e orações de proteção</span>
+                </li>
+            </ul>
+        </div>
+        <!-- Aula 2 -->
+        <div class="bg-white rounded-lg shadow-lg p-8 transform transition hover:scale-105">
+            <h3 class="text-3xl font-semibold mb-6 text-pink-500">Aula 2</h3>
+            <ul class="space-y-4 text-gray-800">
+                <li class="flex items-start">
+                    <span class="text-pink-500 mr-3 text-xl">•</span>
+                    <span>Tipos de atendimento com a mesa</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-pink-500 mr-3 text-xl">•</span>
+                    <span>Como consagrar sua mesa</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-pink-500 mr-3 text-xl">•</span>
+                    <span>Como consagrar os cristais</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-pink-500 mr-3 text-xl">•</span>
+                    <span>Iniciação à egrégora da Mesa Radiônica</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-pink-500 mr-3 text-xl">•</span>
+                    <span>Prática com troca de atendimento</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+    
+    <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-extrabold mb-12 text-center text-gray-800">Suas Mentoras</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Patrícia -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2">
+                    <div class="text-center">
+                        <img src="WhatsApp Image 2025-01-18 at 7.46.11 AM.jpeg" alt="Patrícia Costa" 
+                             class="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-purple-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Patrícia Costa</h3>
+                        <p class="text-purple-600 font-medium mb-4">Canalizadora e Instrutora</p>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        Com mais de 30 anos de experiência no universo da espiritualidade, Patrícia é especialista em Osatoshi e Baralho Cigano. 
+                        Ela canalizou diversas mesas radiônicas, incluindo o Tabuleiro dos Deuses e a Mesa de Limpeza e Proteção de Arcanjo Miguel.
+                    </p>
+                </div>
+                <!-- Izabella -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2">
+                    <div class="text-center">
+                        <img src="WhatsApp Image 2025-01-18 at 7.47.10 AM.jpeg" alt="Izabella Costa" 
+                             class="w-32 h-32 object-cover rounded-full mx-auto mb-6 border-4 border-pink-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-800">Izabella Costa</h3>
+                        <p class="text-pink-600 font-medium mb-4">Terapeuta e Facilitadora</p>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed">
+                        Izabella é uma terapeuta especializada em ThetaHealing, Aura Master e Mesa Radiônica. 
+                        Sua abordagem integrativa promove o bem-estar físico, emocional e espiritual dos seus clientes e alunos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Professoras -->
+  
+
+    <!-- Depoimentos -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-800">Depoimentos dos Alunos</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <img src="/api/placeholder/60/60" alt="" class="rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-purple-800">Gabriel Pacios</h4>
+                            <div class="flex text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Agradeço infinitamente a honra de receber esse conhecimento divino com tamanha potência. Durante a iniciação me emocionei profundamente."</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <img src="/api/placeholder/60/60" alt="" class="rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-purple-800">Rachel Camacho</h4>
+                            <div class="flex text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Já tinha ficado apaixonada pela mesa no atendimento. Obrigada pela aula, por compartilhar com tanto amor e carinho esses conhecimentos."</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <img src="/api/placeholder/60/60" alt="" class="rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-purple-800">Karin Martinz</h4>
+                            <div class="flex text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"Fazer esse curso foi incrível, emocionante e tenho certeza que muita gente vai poder se beneficiar dessa MRDRP. Você é luz!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Para Quem É -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center text-gray-800">Para Quem é Este Curso?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="bg-purple-50 p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🔮</span>
+                    </div>
+                    <h3 class="font-bold text-purple-800 mb-2">Terapeutas</h3>
+                    <p class="text-gray-600">Que desejam ampliar suas práticas</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">✨</span>
+                    </div>
+                    <h3 class="font-bold text-purple-800 mb-2">Iniciantes</h3>
+                    <p class="text-gray-600">Buscando uma nova carreira</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🧘‍♀️</span>
+                    </div>
+                    <h3 class="font-bold text-purple-800 mb-2">Interessados</h3>
+                    <p class="text-gray-600">Em autoconhecimento e espiritualidade</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-xl text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">💫</span>
+                    </div>
+                    <h3 class="font-bold text-purple-800 mb-2">Praticantes</h3>
+                    <p class="text-gray-600">De terapias holísticas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscrição -->
+  
+
+
+
+    <div class="section bg-gradient-to-r from-purple-800 via-pink-600 to-purple-700 text-white shadow-2xl p-10 sm:p-14 md:p-16 rounded-2xl transform hover:scale-105 transition-transform duration-300 max-w-xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-yellow-300 uppercase tracking-wider text-center">
+            Garanta Sua Vaga Agora
+        </h1>
+        <p class="text-lg md:text-xl mb-4 text-center font-medium text-white">
+            29 e 30 de março (sábado e domingo)
+        </p>
+        <p class="text-lg md:text-xl mb-8 text-center font-medium text-white">
+            Das 10h às 17h
+        </p>
+        <div class="text-center">
+            <button class="bg-yellow-400 text-purple-800 px-8 md:px-12 py-3 md:py-4 font-bold text-lg rounded-full shadow-lg hover:bg-yellow-300 hover:shadow-xl transition-all duration-300">
+                Inscreva-se
+            </button>
+        </div>
+    </div>
+    
+
+
+    <section class="py-16 bg-gradient-to-b from-purple-50 to-pink-50 text-gray-800">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold mb-8 text-center text-purple-800 uppercase">Dúvidas Frequentes</h2>
+            <div class="space-y-6">
+                <!-- FAQ Items -->
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">1. Como o curso será realizado?</h3>
+                    <p class="text-gray-700">O curso será realizado online e ao vivo pela plataforma Zoom, permitindo que você participe de qualquer lugar.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">2. Qual é o valor do curso e formas de pagamento?</h3>
+                    <p class="text-gray-700">
+                        R$620,00  
+                        <br>À vista no pix ou cartão de crédito (parcelado em até 5x).
+                    </p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">3. Receberei certificado ao final do curso?</h3>
+                    <p class="text-gray-700">Sim, todos os participantes receberão um certificado de conclusão, reconhecendo suas habilidades na prática da Mesa Radiônica dos Raios Planetários.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">4. Haverá prática durante o curso?</h3>
+                    <p class="text-gray-700">Sim, o curso inclui práticas ao vivo, onde você poderá aplicar os conhecimentos adquiridos e trocar experiências com seus colegas.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">5. Posso fazer perguntas durante as aulas?</h3>
+                    <p class="text-gray-700">Absolutamente! Incentivamos a interação e a troca de dúvidas durante as aulas para garantir que você tenha clareza sobre os temas abordados.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">6. Preciso ter experiência prévia?</h3>
+                    <p class="text-gray-700">Não, o curso é aberto tanto para iniciantes quanto para terapeutas que desejam atuar com uma nova técnica para complementar seu trabalho.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">7. Qual é a duração do curso?</h3>
+                    <p class="text-gray-700">O curso é dividido em dois dias com aulas intensivas e práticas.</p>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-xl text-purple-800 mb-3">8. Receberei material de apoio?</h3>
+                    <p class="text-gray-700">Sim, disponibilizaremos materiais complementares para que você possa estudar e praticar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+    <section id="contact" class="py-24 bg-gradient-to-br from-blue-50 to-blue-100">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Contact Form -->
+                <div class="bg-white p-10 rounded-2xl shadow-lg" data-aos="fade-right">
+                    <h2 class="text-4xl font-extrabold text-blue-900 mb-6">Entre em Contato</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                        Pronto para transformar seu negócio com nossas soluções premium de telecomunicações? Entre em contato hoje mesmo.
+                    </p>
+                    <form class="space-y-8">
+                        <div>
+                            <label class="block text-gray-800 mb-3 font-semibold">Nome</label>
+                            <input type="text" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 focus:outline-none" placeholder="Seu nome" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-800 mb-3 font-semibold">Email</label>
+                            <input type="email" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 focus:outline-none" placeholder="Seu email" />
+                        </div>
+                        <div>
+                            <label class="block text-gray-800 mb-3 font-semibold">Mensagem</label>
+                            <textarea class="w-full p-4 border border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500 focus:outline-none" placeholder="Sua mensagem" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl shadow-md hover:bg-blue-700 hover:shadow-lg transition-transform duration-300">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+    
+                <!-- Contact Details and Map -->
+                <div class="flex flex-col justify-center space-y-10" data-aos="fade-left">
+                    <div>
+                        <h3 class="text-3xl font-bold text-blue-900 mb-4">Como Chegar</h3>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Adoraríamos ouvir de você. Entre em contato conosco usando os seguintes detalhes:
+                        </p>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex items-center space-x-6">
+                            <span class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center shadow-md">
+                                <img src="https://cdn-icons-png.flaticon.com/512/483/483947.png" alt="Ícone de telefone" class="w-6 h-6" />
+                            </span>
+                            <span class="text-gray-700 text-lg">+55 11 93370-5460</span>
+                        </li>
+                        <li class="flex items-center space-x-6">
+                            <span class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center shadow-md">
+                                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Ícone de e-mail" class="w-6 h-6" />
+                            </span>
+                            <span class="text-gray-700 text-lg">contato@telecomnew.com.br</span>
+                        </li>
+                        <li class="flex items-center space-x-6">
+                            <span class="w-14 h-14 bg-blue-200 rounded-full flex items-center justify-center shadow-md">
+                                <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Ícone de localização" class="w-6 h-6" />
+                            </span>
+                            <span class="text-gray-700 text-lg">
+                                Rua Pará 305, Jd Diva, Santana de Parnaíba, SP, CEP 06530-447
+                            </span>
+                        </li>
+                    </ul>
+                    <!-- Embedded Map -->
+                    <div class="rounded-2xl overflow-hidden shadow-lg">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.887385126816!2d-46.91254348497831!3d-23.48839196464786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf02931848e68d%3A0x8c2f9d7e30bf25e6!2sRua%20Par%C3%A1%2C%20305%20-%20Jardim%20Diva%2C%20Santana%20de%20Parna%C3%ADba%20-%20SP%2C%2006530-447%2C%20Brazil!5e0!3m2!1sen!2sbr!4v1673620568193!5m2!1sen!2sbr"
+                            width="100%"
+                            height="350"
+                            frameborder="0"
+                            style="border:0;"
+                            allowfullscreen=""
+                            aria-hidden="false"
+                            tabindex="0"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+
+
+
+
+   
+
+
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#course-details">Detalhes do Curso</a></li>
+                    <li><a href="#curriculum">Currículo</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Recursos</h3>
+                <ul>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#guides">Guias Gratuitos</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                    <li><a href="#community">Comunidade</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Mantenha-se Conectado</h3>
+                <form>
+                    <input type="email" placeholder="Digite seu e-mail">
+                    <textarea placeholder="Mensagem" rows="3"></textarea>
+                    <button type="submit">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Radionic Table Academy. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
